@@ -1,0 +1,30 @@
+{
+    "name": "romanzipp/laravel-console-list-columns",
+    "description": "List database tables columns & information.",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "romanzipp",
+            "email": "ich@ich.wtf",
+            "homepage": "https://ich.wtf"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0",
+        "laravel/framework": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "romanzipp\\ColumnList\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "romanzipp\\ColumnList\\Providers\\ColumnListProvider"
+            ]
+        }
+    }
+}
