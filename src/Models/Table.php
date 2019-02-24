@@ -95,4 +95,26 @@ class Table extends Model
 
         return implode(PHP_EOL, $output);
     }
+
+    private function getTypeColumnEmoji(string $type): string
+    {
+        switch ($type) {
+
+            case 'integer':
+                return '1⃣';
+
+            case 'varchar':
+            case 'text':
+                return '🅰️';
+
+            case 'boolean':
+                return '🆗';
+
+            case 'datetime':
+                return '🕑';
+
+            default:
+                return '❔';
+        }
+    }
 }
