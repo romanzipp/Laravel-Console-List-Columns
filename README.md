@@ -13,7 +13,7 @@ composer require romanzipp/laravel-console-list-columns
 Or add `romanzipp/laravel-console-list-columns` to your `composer.json`
 
 ```
-"romanzipp/laravellaravel-console-list-columns-twitch": "^0.1"
+"romanzipp/laravel-console-list-columns-twitch": "^0.1"
 ```
 
 Run `composer install` to pull the latest version.
