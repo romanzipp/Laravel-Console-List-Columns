@@ -44,6 +44,8 @@ $ php artisan vendor:publish --provider="romanzipp\ColumnList\Providers\ColumnLi
 $ php artisan db:columns {--table=} {--connection=}
 ```
 
+![Preview](https://raw.githubusercontent.com/romanzipp/Laravel-Console-List-Columns/master/preview.png)
+
 ## TODO
 
 - [ ] Add support for multiple database connections
