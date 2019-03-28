@@ -8,7 +8,7 @@ use romanzipp\ColumnList\Services\ProcessingService;
 class ListDatabaseColumns extends Command
 {
     protected $signature = 'db:columns
-                {table : The table to print out}
+                {table : Comma separated table names to print out}
                 {--connection= : Specified database connection}
                 {--no-colors : Don\'t use colors in output}
                 {--no-emojis : Don\'t use emojis in output}';

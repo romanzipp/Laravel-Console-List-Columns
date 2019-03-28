@@ -6,8 +6,6 @@
 
 List database tables columns & information.
 
-**IN DEVELOPMENT**
-
 ## Installation
 
 ```
@@ -17,7 +15,7 @@ composer require romanzipp/laravel-console-list-columns
 Or add `romanzipp/laravel-console-list-columns` to your `composer.json`
 
 ```
-"romanzipp/laravel-console-list-columns-twitch": "^0.1"
+"romanzipp/laravel-console-list-columns": "^0.1"
 ```
 
 Run `composer install` to pull the latest version.
@@ -42,16 +40,10 @@ $ php artisan vendor:publish --provider="romanzipp\ColumnList\Providers\ColumnLi
 
 ```
 $ php artisan db:columns
-    {table}          The table to print out
+    {table}          Comma separated table names to print out
     {--connection=}  Specified database connection
     {--no-colors}    Don't use colors in output
     {--no-emojis}    Don't use emojis in output
 ```
 
 ![Preview](https://raw.githubusercontent.com/romanzipp/Laravel-Console-List-Columns/master/preview.png)
-
-## TODO
-
-- [ ] Add support for multiple database connections
-- [ ] Fetch all tables if not explicitly given
-- [ ] Add trailing table characters
