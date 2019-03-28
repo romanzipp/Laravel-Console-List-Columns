@@ -4,7 +4,6 @@ namespace romanzipp\ColumnList\Services;
 
 use Illuminate\Support\Facades\DB;
 use LucidFrame\Console\ConsoleTable;
-use romanzipp\ColumnList\Models\Table;
 use Spatie\Emoji\Emoji;
 use Wujunze\Colors;
 
