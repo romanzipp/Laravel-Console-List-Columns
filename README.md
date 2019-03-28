@@ -41,7 +41,11 @@ $ php artisan vendor:publish --provider="romanzipp\ColumnList\Providers\ColumnLi
 ## Usage
 
 ```
-$ php artisan db:columns {--table=} {--connection=}
+$ php artisan db:columns
+    {table}          The table to print out
+    {--connection=}  Specified database connection
+    {--no-colors}    Don't use colors in output
+    {--no-emojis}    Don't use emojis in output
 ```
 
 ![Preview](https://raw.githubusercontent.com/romanzipp/Laravel-Console-List-Columns/master/preview.png)
