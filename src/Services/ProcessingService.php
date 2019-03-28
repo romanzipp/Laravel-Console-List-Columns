@@ -16,16 +16,39 @@ class ProcessingService
         'deleted_at',
     ];
 
+    /**
+     * Table name.
+     *
+     * @var string|null
+     */
     protected $tableName = null;
 
+    /**
+     * The database connection to be used.
+     *
+     * @var mixed
+     */
     protected $connection;
 
+    /**
+     * Printable cli table.
+     *
+     * @var \LucidFrame\Console\ConsoleTable
+     */
     protected $table;
 
-    protected $rows;
-
+    /**
+     * The package config.
+     *
+     * @var array
+     */
     protected $config;
 
+    /**
+     * Available sets of printable columns.
+     *
+     * @var array
+     */
     private static $availableColumns = [
         'name'           => 'Name',
         'laravel'        => 'Laravel',
@@ -37,8 +60,18 @@ class ProcessingService
         'comment'        => 'Comment',
     ];
 
+    /**
+     * Enabled columns for output.
+     *
+     * @var array
+     */
     private $enabledColumns = [];
 
+    /**
+     * Constructor.
+     *
+     * @param string $tableName Table name
+     */
     public function __construct(string $tableName)
     {
         $this->tableName = $tableName;
@@ -57,6 +90,11 @@ class ProcessingService
         }
     }
 
+    /**
+     * Fetch table & column information.
+     *
+     * @return void
+     */
     public function fetch(): void
     {
         $this->table = new ConsoleTable;
@@ -69,6 +107,11 @@ class ProcessingService
         $this->fetchTableColumns();
     }
 
+    /**
+     * Output table information to console.
+     *
+     * @return void
+     */
     public function output(): void
     {
         echo ' ' . $this->tableName;
@@ -80,6 +123,11 @@ class ProcessingService
         echo PHP_EOL;
     }
 
+    /**
+     * Set the table headers.
+     *
+     * @return void
+     */
     private function setHeaders(): void
     {
         $headers = [];
@@ -91,11 +139,22 @@ class ProcessingService
         $this->table->setHeaders($headers);
     }
 
+    /**
+     * Wether a specified column is enabled via config.
+     *
+     * @param  string    $key Column key
+     * @return boolean
+     */
     private function columnEnabled(string $key): bool
     {
         return config('column-list.display_columns.' . $key) == true;
     }
 
+    /**
+     * Fetch the table columns.
+     *
+     * @return void
+     */
     private function fetchTableColumns(): void
     {
         foreach ($this->connection->getSchemaBuilder()->getColumnListing($this->tableName) as $key => $name) {
@@ -117,6 +176,12 @@ class ProcessingService
         }
     }
 
+    /**
+     * Skip disabled columns.
+     *
+     * @param  array $values All values
+     * @return array Array values for output
+     */
     private function populateRow(array $values): array
     {
         foreach ($values as $key => $value) {
@@ -131,6 +196,12 @@ class ProcessingService
         return array_values($values);
     }
 
+    /**
+     * Process the column information.
+     *
+     * @param  \Doctrine\DBAL\Schema\Column $column   column
+     * @return array                        Formatted array of column information
+     */
     private function processColumnPreferences($column): array
     {
         $name = $column->getName();
@@ -150,12 +221,25 @@ class ProcessingService
         ];
     }
 
+    /**
+     * Pretty print a boolean value.
+     *
+     * @param  bool   $value    Boolean value
+     * @return string Formatted string
+     */
     private function beautifyBooleanValue(bool $value): string
     {
         return $value ? $this->coloredString('y', 'green') : $this->coloredString('n', 'red');
     }
 
-    private function coloredString(string $string, $color): string
+    /**
+     * May print a string in colors.
+     *
+     * @param  string $string String
+     * @param  string $color  Color
+     * @return string Output string
+     */
+    private function coloredString(string $string, string $color): string
     {
         if ( ! $this->config['colors']) {
             return $string;
@@ -164,6 +248,12 @@ class ProcessingService
         return (new Colors)->getColoredString($string, $color);
     }
 
+    /**
+     * Get the emoji for specified column type.
+     *
+     * @param  string $type   Column Type
+     * @return string Unicode emoji
+     */
     private function getTypeColumnEmoji(string $type): string
     {
         switch ($type) {

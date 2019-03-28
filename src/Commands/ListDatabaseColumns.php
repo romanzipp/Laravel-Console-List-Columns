@@ -7,18 +7,29 @@ use romanzipp\ColumnList\Services\ProcessingService;
 
 class ListDatabaseColumns extends Command
 {
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
     protected $signature = 'db:columns
                 {table : Comma separated table names to print out}
                 {--connection= : Specified database connection}
                 {--no-colors : Don\'t use colors in output}
                 {--no-emojis : Don\'t use emojis in output}';
 
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
     protected $description = 'List database columns';
 
-    private $emojis = false;
-
-    private $longestColumnName = 0;
-
+    /**
+     * Execute the console command.
+     *
+     * @return void
+     */
     public function handle()
     {
         if ($connection = $this->option('connection')) {
