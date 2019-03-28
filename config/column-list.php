@@ -11,6 +11,9 @@ return [
         'default'        => true,
         'comment'        => true,
     ],
+    'connection'      => null,
     'emojis'          => true,
     'colors'          => true,
+    'padding'         => 1,
+    'indent'          => 0,
 ];
