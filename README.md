@@ -3,8 +3,8 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/romanzipp/laravel-console-list-columns.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-console-list-columns)
 [![Total Downloads](https://img.shields.io/packagist/dt/romanzipp/laravel-console-list-columns.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-console-list-columns)
 [![License](https://img.shields.io/packagist/l/romanzipp/laravel-console-list-columns.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-console-list-columns)
-[![Code Quality](https://img.shields.io/scrutinizer/g/romanzipp/laravel-console-list-columns.svg?style=flat-square)](https://scrutinizer-ci.com/g/romanzipp/laravel-console-list-columns/?branch=master)
-[![Build Status](https://img.shields.io/travis/romanzipp/laravel-console-list-columns.svg?style=flat-square)](https://travis-ci.org/romanzipp/laravel-console-list-columns)
+[![Code Quality](https://img.shields.io/scrutinizer/g/romanzipp/Laravel-Console-List-Columns.svg?style=flat-square)](https://scrutinizer-ci.com/g/romanzipp/Laravel-Console-List-Columns/?branch=master)
+[![Build Status](https://img.shields.io/travis/romanzipp/Laravel-Console-List-Columns.svg?style=flat-square)](https://travis-ci.org/romanzipp/Laravel-Console-List-Columns)
 
 List database tables columns & information.
 
