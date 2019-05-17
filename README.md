@@ -17,7 +17,7 @@ composer require romanzipp/laravel-console-list-columns
 Or add `romanzipp/laravel-console-list-columns` to your `composer.json`
 
 ```
-"romanzipp/laravel-console-list-columns": "^0.1"
+"romanzipp/laravel-console-list-columns": "^1.0.0"
 ```
 
 Run `composer install` to pull the latest version.
