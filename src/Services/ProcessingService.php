@@ -258,6 +258,8 @@ class ProcessingService
         switch ($type) {
 
             case 'integer':
+            case 'bigint':
+            case 'tinyint':
                 return Emoji::inputNumbers();
 
             case 'varchar':
