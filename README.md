@@ -6,7 +6,7 @@
 [![Code Quality](https://img.shields.io/scrutinizer/g/romanzipp/Laravel-Console-List-Columns.svg?style=flat-square)](https://scrutinizer-ci.com/g/romanzipp/Laravel-Console-List-Columns/?branch=master)
 [![Build Status](https://img.shields.io/travis/romanzipp/Laravel-Console-List-Columns.svg?style=flat-square)](https://travis-ci.org/romanzipp/Laravel-Console-List-Columns)
 
-List database tables columns & information.
+Quick command to list db table columns & information.
 
 ## Installation
 
