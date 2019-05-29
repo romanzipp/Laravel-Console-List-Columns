@@ -14,15 +14,7 @@ Quick command to list db table columns & information.
 composer require romanzipp/laravel-console-list-columns
 ```
 
-Or add `romanzipp/laravel-console-list-columns` to your `composer.json`
-
-```
-"romanzipp/laravel-console-list-columns": "^1.0.0"
-```
-
-Run `composer install` to pull the latest version.
-
-**If you use Laravel 5.5+ you are already done, otherwise continue:**
+**If you use Laravel 5.5+ you are already done, otherwise continue.**
 
 Add Service Provider to your `app.php` configuration file:
 
