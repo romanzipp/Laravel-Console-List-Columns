@@ -6,7 +6,8 @@
 [![Code Quality](https://img.shields.io/scrutinizer/g/romanzipp/Laravel-Console-List-Columns.svg?style=flat-square)](https://scrutinizer-ci.com/g/romanzipp/Laravel-Console-List-Columns/?branch=master)
 [![Build Status](https://img.shields.io/travis/romanzipp/Laravel-Console-List-Columns.svg?style=flat-square)](https://travis-ci.org/romanzipp/Laravel-Console-List-Columns)
 
-Quick command to list db table columns & information.
+When working with many database migrations you can quickly lose the overview about table structures.
+With this package you can **get a simple overview about table and column information** on your command line.
 
 ## Installation
 
@@ -38,6 +39,10 @@ $ php artisan db:columns
     {--connection=}  Specified database connection
     {--no-colors}    Don't use colors in output
     {--no-emojis}    Don't use emojis in output
+```
+
+```
+$ php artisan db:columns users
 ```
 
 ![Preview](https://raw.githubusercontent.com/romanzipp/Laravel-Console-List-Columns/master/preview.png)
