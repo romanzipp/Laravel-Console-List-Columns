@@ -75,9 +75,9 @@ class ProcessingService
     {
         $this->tableName = $tableName;
 
-        $this->connection = DB::connection($this->config['connection']);
-
         $this->config = config('column-list');
+
+        $this->connection = DB::connection($this->config['connection']);
 
         foreach (self::$availableColumns as $key => $title) {
 
@@ -141,7 +141,7 @@ class ProcessingService
     /**
      * Wether a specified column is enabled via config.
      *
-     * @param  string    $key Column key
+     * @param string $key Column key
      * @return boolean
      */
     private function columnEnabled(string $key): bool
@@ -178,7 +178,7 @@ class ProcessingService
     /**
      * Skip disabled columns.
      *
-     * @param  array $values All values
+     * @param array $values All values
      * @return array Array values for output
      */
     private function populateRow(array $values): array
@@ -198,7 +198,7 @@ class ProcessingService
     /**
      * Process the column information.
      *
-     * @param  \Doctrine\DBAL\Schema\Column $column   column
+     * @param \Doctrine\DBAL\Schema\Column $column column
      * @return array                        Formatted array of column information
      */
     private function processColumnPreferences($column): array
@@ -213,7 +213,7 @@ class ProcessingService
             'laravel'        => $this->beautifyBooleanValue(in_array($name, self::LARAVEL_COLUMNS)),
             'type'           => ($this->config['emojis'] ? $this->getTypeColumnEmoji($type) . ' ' : '') . $type,
             'length'         => $column->getLength() ?? $none,
-            'nullable'       => $this->beautifyBooleanValue( ! $column->getNotnull()),
+            'nullable'       => $this->beautifyBooleanValue(! $column->getNotnull()),
             'auto_increment' => $this->beautifyBooleanValue($column->getAutoincrement()),
             'default'        => $column->getDefault() ?? $none,
             'comment'        => $column->getComment() ?? $none,
@@ -223,7 +223,7 @@ class ProcessingService
     /**
      * Pretty print a boolean value.
      *
-     * @param  bool   $value    Boolean value
+     * @param bool $value Boolean value
      * @return string Formatted string
      */
     private function beautifyBooleanValue(bool $value): string
@@ -234,8 +234,8 @@ class ProcessingService
     /**
      * May print a string in colors.
      *
-     * @param  string $string String
-     * @param  string $color  Color
+     * @param string $string String
+     * @param string $color Color
      * @return string Output string
      */
     private function coloredString(string $string, string $color): string
@@ -250,7 +250,7 @@ class ProcessingService
     /**
      * Get the emoji for specified column type.
      *
-     * @param  string $type   Column Type
+     * @param string $type Column Type
      * @return string Unicode emoji
      */
     private function getTypeColumnEmoji(string $type): string
