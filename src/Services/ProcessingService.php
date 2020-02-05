@@ -41,7 +41,7 @@ class ProcessingService
      *
      * @var array
      */
-    protected $config;
+    protected $config = [];
 
     /**
      * Available sets of printable columns.
