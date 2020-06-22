@@ -2,10 +2,10 @@
 
 namespace romanzipp\ColumnList\Services;
 
+use Codedungeon\PHPCliColors\Color;
 use Illuminate\Support\Facades\DB;
 use LucidFrame\Console\ConsoleTable;
 use Spatie\Emoji\Emoji;
-use Wujunze\Colors;
 
 class ProcessingService
 {
@@ -228,7 +228,7 @@ class ProcessingService
         $name = $column->getName();
         $type = $column->getType()->getName();
 
-        $none = $this->coloredString('-', 'dark_gray');
+        $none = $this->coloredString('-', 'gray');
 
         return [
             'name' => $this->coloredString($name, 'cyan'),
@@ -266,7 +266,9 @@ class ProcessingService
             return $string;
         }
 
-        return (new Colors)->getColoredString($string, $color);
+        $colorMethod = sprintf('light_%s', $color);
+
+        return Color::$colorMethod() . $string . Color::RESET;
     }
 
     /**
