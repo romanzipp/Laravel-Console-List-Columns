@@ -4,8 +4,9 @@ namespace romanzipp\ColumnList\Services;
 
 use Codedungeon\PHPCliColors\Color;
 use Illuminate\Support\Facades\DB;
-use LucidFrame\Console\ConsoleTable;
 use Spatie\Emoji\Emoji;
+use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class ProcessingService
 {
@@ -32,7 +33,7 @@ class ProcessingService
     /**
      * Printable cli table.
      *
-     * @var \LucidFrame\Console\ConsoleTable
+     * @var \Symfony\Component\Console\Helper\Table
      */
     protected $table;
 
@@ -103,10 +104,11 @@ class ProcessingService
      */
     public function fetch(): void
     {
-        $this->table = new ConsoleTable;
+        $this->table = new Table(
+            new ConsoleOutput
+        );
 
-        $this->table->setPadding($this->config['padding'] ?? 1);
-        $this->table->setIndent($this->config['indent'] ?? 0);
+        $this->table->setStyle($this->config['style'] ?? 'box');
 
         $this->setHeaders();
 
@@ -120,13 +122,7 @@ class ProcessingService
      */
     public function output(): void
     {
-        echo ' ' . $this->tableName;
-
-        echo PHP_EOL;
-
-        $this->table->display();
-
-        echo PHP_EOL;
+        $this->table->render();
     }
 
     /**
@@ -150,6 +146,7 @@ class ProcessingService
             $headers[] = self::$availableColumns[$key];
         }
 
+        $this->table->setHeaderTitle($this->tableName);
         $this->table->setHeaders($headers);
     }
 

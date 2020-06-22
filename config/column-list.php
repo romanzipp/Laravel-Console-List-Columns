@@ -25,7 +25,9 @@ return [
 
     'colors' => true,
 
-    'padding' => 1,
-
-    'indent' => 0,
+    /*
+     * Specify the style that should be used.
+     * Available: default, borderless, compact, symfony-style-guide, box, box-double
+     */
+    'style' => 'box',
 ];
