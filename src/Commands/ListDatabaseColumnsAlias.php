@@ -32,11 +32,15 @@ class ListDatabaseColumnsAlias extends Command
      */
     public function handle()
     {
-        Artisan::call(ListDatabaseColumns::class, [
+        $options = array_combine(
+            array_map(static function ($key) {
+                return sprintf('--%s', $key);
+            }, array_keys($this->options())),
+            array_values($this->options())
+        );
+
+        Artisan::call(ListDatabaseColumns::class, array_merge($options, [
             'table' => $this->argument('table'),
-            '--connection' => $this->option('connection'),
-            '--no-colors' => $this->option('no-colors'),
-            '--no-emojis' => $this->option('no-emojis'),
-        ]);
+        ]));
     }
 }
