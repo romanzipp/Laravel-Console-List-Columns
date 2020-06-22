@@ -49,14 +49,14 @@ class ProcessingService
      * @var array
      */
     private static $availableColumns = [
-        'name'           => 'Name',
-        'laravel'        => 'Laravel',
-        'type'           => 'Type',
-        'length'         => 'Length',
-        'nullable'       => 'Nullable',
+        'name' => 'Name',
+        'laravel' => 'Laravel',
+        'type' => 'Type',
+        'length' => 'Length',
+        'nullable' => 'Nullable',
         'auto_increment' => 'Auto Increment',
-        'default'        => 'Default',
-        'comment'        => 'Comment',
+        'default' => 'Default',
+        'comment' => 'Comment',
     ];
 
     /**
@@ -209,14 +209,14 @@ class ProcessingService
         $none = $this->coloredString('-', 'dark_gray');
 
         return [
-            'name'           => $this->coloredString($name, 'cyan'),
-            'laravel'        => $this->beautifyBooleanValue(in_array($name, self::LARAVEL_COLUMNS)),
-            'type'           => ($this->config['emojis'] ? $this->getTypeColumnEmoji($type) . ' ' : '') . $type,
-            'length'         => $column->getLength() ?? $none,
-            'nullable'       => $this->beautifyBooleanValue(! $column->getNotnull()),
+            'name' => $this->coloredString($name, 'cyan'),
+            'laravel' => $this->beautifyBooleanValue(in_array($name, self::LARAVEL_COLUMNS)),
+            'type' => ($this->config['emojis'] ? $this->getTypeColumnEmoji($type) . ' ' : '') . $type,
+            'length' => $column->getLength() ?? $none,
+            'nullable' => $this->beautifyBooleanValue(! $column->getNotnull()),
             'auto_increment' => $this->beautifyBooleanValue($column->getAutoincrement()),
-            'default'        => $column->getDefault() ?? $none,
-            'comment'        => $column->getComment() ?? $none,
+            'default' => $column->getDefault() ?? $none,
+            'comment' => $column->getComment() ?? $none,
         ];
     }
 
