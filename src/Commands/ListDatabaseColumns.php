@@ -51,6 +51,11 @@ class ListDatabaseColumns extends Command
             $processing = new ProcessingService($table);
 
             $processing->fetch();
+
+            if ( ! $processing->exists()) {
+                continue;
+            }
+
             $processing->output();
         }
     }

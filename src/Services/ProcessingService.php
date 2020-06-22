@@ -44,6 +44,13 @@ class ProcessingService
     protected $config = [];
 
     /**
+     * Determine if the table is missing.
+     *
+     * @var bool
+     */
+    protected $missing = false;
+
+    /**
      * Available sets of printable columns.
      *
      * @var array
@@ -123,6 +130,14 @@ class ProcessingService
     }
 
     /**
+     * @return bool
+     */
+    public function exists(): bool
+    {
+        return ! $this->missing;
+    }
+
+    /**
      * Set the table headers.
      *
      * @return void
@@ -156,7 +171,14 @@ class ProcessingService
      */
     private function fetchTableColumns(): void
     {
-        foreach ($this->connection->getSchemaBuilder()->getColumnListing($this->tableName) as $key => $name) {
+        $columnListing = $this->connection->getSchemaBuilder()->getColumnListing($this->tableName);
+
+        if (empty($columnListing)) {
+            $this->missing = true;
+            return;
+        }
+
+        foreach ($columnListing as $key => $name) {
 
             $column = $this->connection->getDoctrineColumn(
                 $this->tableName,
