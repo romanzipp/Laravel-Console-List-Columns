@@ -9,7 +9,7 @@ use Wujunze\Colors;
 
 class ProcessingService
 {
-    const LARAVEL_COLUMNS = [
+    private const LARAVEL_COLUMNS = [
         'created_at',
         'updated_at',
         'deleted_at',
