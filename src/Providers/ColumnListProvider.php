@@ -4,6 +4,7 @@ namespace romanzipp\ColumnList\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use romanzipp\ColumnList\Commands\ListDatabaseColumns;
+use romanzipp\ColumnList\Commands\ListDatabaseColumnsAlias;
 
 class ColumnListProvider extends ServiceProvider
 {
@@ -22,6 +23,7 @@ class ColumnListProvider extends ServiceProvider
 
             $this->commands([
                 ListDatabaseColumns::class,
+                ListDatabaseColumnsAlias::class,
             ]);
         }
     }

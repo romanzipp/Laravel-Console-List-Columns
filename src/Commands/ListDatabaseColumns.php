@@ -12,7 +12,7 @@ class ListDatabaseColumns extends Command
      *
      * @var string
      */
-    protected $signature = 'db:columns
+    protected $signature = 'db:cols
                 {table : Comma separated table names to print out}
                 {--connection= : Specified database connection}
                 {--no-colors : Don\'t use colors in output}
