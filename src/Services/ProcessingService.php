@@ -2,11 +2,11 @@
 
 namespace romanzipp\ColumnList\Services;
 
-use Codedungeon\PHPCliColors\Color;
 use Illuminate\Support\Facades\DB;
 use Spatie\Emoji\Emoji;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Wujunze\Colors;
 
 class ProcessingService
 {
@@ -225,7 +225,7 @@ class ProcessingService
         $name = $column->getName();
         $type = $column->getType()->getName();
 
-        $none = $this->coloredString('-', 'gray');
+        $none = $this->coloredString('-', 'dark_gray');
 
         return [
             'name' => $this->coloredString($name, 'cyan'),
@@ -263,9 +263,7 @@ class ProcessingService
             return $string;
         }
 
-        $colorMethod = sprintf('light_%s', $color);
-
-        return Color::$colorMethod() . $string . Color::RESET;
+        return (new Colors)->getColoredString($string, $color);
     }
 
     /**
