@@ -26,7 +26,7 @@ php artisan vendor:publish --provider="romanzipp\ColumnList\Providers\ColumnList
 ## Usage
 
 ```
-$ php artisan db:cols
+php artisan db:cols
     {table}          Comma separated table names to print out
     {--connection=}  Specified database connection
     {--no-colors}    Don't use colors in output
@@ -34,7 +34,7 @@ $ php artisan db:cols
 ```
 
 ```
-$ php artisan db:cols users
+php artisan db:cols users
 ```
 
 ![Preview](https://raw.githubusercontent.com/romanzipp/Laravel-Console-List-Columns/master/preview.png)
