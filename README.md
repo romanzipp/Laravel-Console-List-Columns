@@ -15,20 +15,12 @@ With this package you can **get a simple overview about table and column informa
 composer require romanzipp/laravel-console-list-columns
 ```
 
-**If you use Laravel 5.5+ you are already done, otherwise continue.**
-
-Add Service Provider to your `app.php` configuration file:
-
-```php
-romanzipp\ColumnList\Providers\ColumnListProvider::class,
-```
-
 ## Configuration
 
 Copy configuration to config folder:
 
 ```
-$ php artisan vendor:publish --provider="romanzipp\ColumnList\Providers\ColumnListProvider"
+php artisan vendor:publish --provider="romanzipp\ColumnList\Providers\ColumnListProvider"
 ```
 
 ## Usage
