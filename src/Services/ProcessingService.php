@@ -88,7 +88,6 @@ class ProcessingService
         $this->connection = DB::connection($this->config['connection']);
 
         foreach (self::$availableColumns as $key => $title) {
-
             if ( ! $this->columnEnabled($key)) {
                 continue;
             }
@@ -105,7 +104,7 @@ class ProcessingService
     public function fetch(): void
     {
         $this->table = new Table(
-            new ConsoleOutput
+            new ConsoleOutput()
         );
 
         $this->table->setStyle($this->config['style'] ?? 'box');
@@ -154,11 +153,12 @@ class ProcessingService
      * Wether a specified column is enabled via config.
      *
      * @param string $key Column key
-     * @return boolean
+     *
+     * @return bool
      */
     private function columnEnabled(string $key): bool
     {
-        return config('column-list.display_columns.' . $key) == true;
+        return true == config('column-list.display_columns.' . $key);
     }
 
     /**
@@ -172,11 +172,11 @@ class ProcessingService
 
         if (empty($columnListing)) {
             $this->missing = true;
+
             return;
         }
 
         foreach ($columnListing as $key => $name) {
-
             $column = $this->connection->getDoctrineColumn(
                 $this->tableName,
                 $name
@@ -198,12 +198,12 @@ class ProcessingService
      * Skip disabled columns.
      *
      * @param array $values All values
+     *
      * @return array Array values for output
      */
     private function populateRow(array $values): array
     {
         foreach ($values as $key => $value) {
-
             if (in_array($key, $this->enabledColumns)) {
                 continue;
             }
@@ -218,7 +218,8 @@ class ProcessingService
      * Process the column information.
      *
      * @param \Doctrine\DBAL\Schema\Column $column column
-     * @return array                        Formatted array of column information
+     *
+     * @return array Formatted array of column information
      */
     private function processColumnPreferences($column): array
     {
@@ -232,7 +233,7 @@ class ProcessingService
             'laravel' => $this->beautifyBooleanValue(in_array($name, self::LARAVEL_COLUMNS)),
             'type' => ($this->config['emojis'] ? $this->getTypeColumnEmoji($type) . ' ' : '') . $type,
             'length' => $column->getLength() ?? $none,
-            'nullable' => $this->beautifyBooleanValue(! $column->getNotnull()),
+            'nullable' => $this->beautifyBooleanValue( ! $column->getNotnull()),
             'auto_increment' => $this->beautifyBooleanValue($column->getAutoincrement()),
             'default' => $column->getDefault() ?? $none,
             'comment' => $column->getComment() ?? $none,
@@ -243,6 +244,7 @@ class ProcessingService
      * Pretty print a boolean value.
      *
      * @param bool $value Boolean value
+     *
      * @return string Formatted string
      */
     private function beautifyBooleanValue(bool $value): string
@@ -255,6 +257,7 @@ class ProcessingService
      *
      * @param string $string String
      * @param string $color Color
+     *
      * @return string Output string
      */
     private function coloredString(string $string, string $color): string
@@ -263,19 +266,19 @@ class ProcessingService
             return $string;
         }
 
-        return (new Colors)->getColoredString($string, $color);
+        return (new Colors())->getColoredString($string, $color);
     }
 
     /**
      * Get the emoji for specified column type.
      *
      * @param string $type Column Type
+     *
      * @return string Unicode emoji
      */
     private function getTypeColumnEmoji(string $type): string
     {
         switch ($type) {
-
             case 'integer':
             case 'bigint':
             case 'tinyint':
