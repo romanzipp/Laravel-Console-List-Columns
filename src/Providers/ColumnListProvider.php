@@ -20,7 +20,6 @@ class ColumnListProvider extends ServiceProvider
         ], 'config');
 
         if ($this->app->runningInConsole()) {
-
             $this->commands([
                 ListDatabaseColumns::class,
                 ListDatabaseColumnsAlias::class,

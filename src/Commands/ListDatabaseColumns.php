@@ -47,7 +47,6 @@ class ListDatabaseColumns extends Command
         $tables = explode(',', $this->argument('table'));
 
         foreach ($tables as $table) {
-
             $processing = new ProcessingService($table);
 
             $processing->fetch();

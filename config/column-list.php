@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
      * Select the columns that should be displayed.
      */
