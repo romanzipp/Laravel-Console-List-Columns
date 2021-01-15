@@ -14,11 +14,9 @@ class ServiceTest extends TestCase
         self::assertFalse($processing->exists());
     }
 
-    public function testTableSimilarMatches()
+    public function testTableExists()
     {
-        config(['column-list.match_similar' => true]);
-
-        $processing = new ProcessingService('two');
+        $processing = new ProcessingService('table_two');
         $processing->fetch();
 
         self::assertTrue($processing->exists());
