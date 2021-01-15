@@ -58,7 +58,6 @@ class ProcessingService
      */
     private static $availableColumns = [
         'name' => 'Name',
-        'laravel' => 'Laravel',
         'type' => 'Type',
         'length' => 'Length',
         'nullable' => 'Nullable',
@@ -223,13 +222,18 @@ class ProcessingService
      */
     private function processColumnPreferences($column): array
     {
-        $name = $column->getName();
+        $name = $this->coloredString($column->getName(), 'cyan');
+
+        if ($this->config['mark_laravel_columns'] && in_array($column->getName(), self::LARAVEL_COLUMNS)) {
+            $name .= $this->coloredString(' [L]', 'light_red');
+        }
+
         $type = $column->getType()->getName();
 
         $none = $this->coloredString('-', 'dark_gray');
 
         return [
-            'name' => $this->coloredString($name, 'cyan'),
+            'name' => $name,
             'laravel' => $this->beautifyBooleanValue(in_array($name, self::LARAVEL_COLUMNS)),
             'type' => ($this->config['emojis'] ? $this->getTypeColumnEmoji($type) . ' ' : '') . $type,
             'length' => $column->getLength() ?? $none,
