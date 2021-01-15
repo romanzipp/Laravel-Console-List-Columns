@@ -30,7 +30,7 @@ class ListDatabaseColumnsAlias extends Command
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $options = array_combine(
             array_map(static function ($key) {

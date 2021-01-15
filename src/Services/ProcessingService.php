@@ -26,7 +26,7 @@ class ProcessingService
     /**
      * The database connection to be used.
      *
-     * @var mixed
+     * @var \Illuminate\Database\ConnectionInterface
      */
     protected $connection;
 
@@ -150,7 +150,7 @@ class ProcessingService
     }
 
     /**
-     * Wether a specified column is enabled via config.
+     * Weather a specified column is enabled via config.
      *
      * @param string $key Column key
      *
@@ -158,7 +158,7 @@ class ProcessingService
      */
     private function columnEnabled(string $key): bool
     {
-        return true == config('column-list.display_columns.' . $key);
+        return true === config('column-list.display_columns.' . $key);
     }
 
     /**

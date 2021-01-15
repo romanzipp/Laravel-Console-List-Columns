@@ -2,7 +2,7 @@
 
 namespace romanzipp\ColumnList\Test;
 
-class BasicTest extends TestCase
+class ExitCodeTest extends TestCase
 {
     public $mockConsoleOutput = true;
 

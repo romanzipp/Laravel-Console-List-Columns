@@ -29,4 +29,9 @@ return [
      * Available: default, borderless, compact, symfony-style-guide, box, box-double
      */
     'style' => 'box',
+
+    /*
+     * If true, table names containing the specified name will also be shown.
+     */
+    'match_similar' => true,
 ];

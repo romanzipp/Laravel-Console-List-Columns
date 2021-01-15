@@ -29,5 +29,10 @@ abstract class TestCase extends BaseTestCase
             $table->integer('integer')->autoIncrement();
             $table->integer('string');
         });
+
+        $app['db']->connection()->getSchemaBuilder()->create('table_two', function (Blueprint $table) {
+            $table->integer('integer')->autoIncrement();
+            $table->integer('string');
+        });
     }
 }

@@ -4,6 +4,7 @@ namespace romanzipp\ColumnList\Commands;
 
 use Illuminate\Console\Command;
 use romanzipp\ColumnList\Services\ProcessingService;
+use romanzipp\ColumnList\Services\TableService;
 
 class ListDatabaseColumns extends Command
 {
@@ -30,7 +31,7 @@ class ListDatabaseColumns extends Command
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         if ($connection = $this->option('connection')) {
             config(['column-list.connection' => $connection]);
@@ -44,9 +45,11 @@ class ListDatabaseColumns extends Command
             config(['column-list.emojis' => false]);
         }
 
-        $tables = explode(',', $this->argument('table'));
+        $tables = new TableService(
+            $this->argument('table')
+        );
 
-        foreach ($tables as $table) {
+        foreach ($tables->getTables() as $table) {
             $processing = new ProcessingService($table);
 
             $processing->fetch();
