@@ -82,8 +82,12 @@ class TableService
 
     private function supportsGettingAllTables(): bool
     {
+        if ( ! method_exists($schemaBuilder = $this->connection->getSchemaBuilder(), 'getAllTables')) {
+            return false;
+        }
+
         try {
-            $this->connection->getSchemaBuilder()->getAllTables();
+            $schemaBuilder->getAllTables();
         } catch (LogicException $exception) {
             return false;
         }
