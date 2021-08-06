@@ -14,4 +14,7 @@ composer.lock
 
 build/*
 .idea/
+.php_cs.dist
 .php_cs.cache
+.php-cs-fixer.cache
+.php-cs-fixer.dist.php
