@@ -26,7 +26,7 @@ class ProcessingService
     /**
      * The database connection to be used.
      *
-     * @var \Illuminate\Database\ConnectionInterface
+     * @var \Illuminate\Database\Connection
      */
     protected $connection;
 
@@ -40,7 +40,7 @@ class ProcessingService
     /**
      * The package config.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected $config = [];
 
@@ -54,7 +54,7 @@ class ProcessingService
     /**
      * Available sets of printable columns.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     private static $availableColumns = [
         'name' => 'Name',
@@ -69,7 +69,7 @@ class ProcessingService
     /**
      * Enabled columns for output.
      *
-     * @var array
+     * @var string[]
      */
     private $enabledColumns = [];
 
@@ -84,6 +84,7 @@ class ProcessingService
 
         $this->config = config('column-list');
 
+        /** @phpstan-ignore-next-line */
         $this->connection = DB::connection($this->config['connection']);
 
         foreach (self::$availableColumns as $key => $title) {
@@ -196,9 +197,9 @@ class ProcessingService
     /**
      * Skip disabled columns.
      *
-     * @param array $values All values
+     * @param array<string, string> $values All values
      *
-     * @return array Array values for output
+     * @return string[] Array values for output
      */
     private function populateRow(array $values): array
     {
@@ -218,7 +219,7 @@ class ProcessingService
      *
      * @param \Doctrine\DBAL\Schema\Column $column column
      *
-     * @return array Formatted array of column information
+     * @return array<string, string> Formatted array of column information
      */
     private function processColumnPreferences($column): array
     {

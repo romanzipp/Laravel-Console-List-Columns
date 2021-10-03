@@ -11,14 +11,14 @@ class TableService
     /**
      * The database connection to be used.
      *
-     * @var \Illuminate\Database\ConnectionInterface
+     * @var \Illuminate\Database\Connection
      */
     protected $connection;
 
     /**
      * The package config.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected $config = [];
 
@@ -33,9 +33,13 @@ class TableService
 
         $this->config = config('column-list');
 
+        /** @phpstan-ignore-next-line */
         $this->connection = DB::connection($this->config['connection']);
     }
 
+    /**
+     * @return string[]
+     */
     public function getTables(): array
     {
         if ( ! $this->config['match_similar']) {
@@ -66,6 +70,9 @@ class TableService
         return $tables;
     }
 
+    /**
+     * @return string[]
+     */
     public function getExistingTables(): array
     {
         if (false === $this->config['match_similar'] || ! $this->supportsGettingAllTables()) {
