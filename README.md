@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/romanzipp/laravel-console-list-columns.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-console-list-columns)
 [![Total Downloads](https://img.shields.io/packagist/dt/romanzipp/laravel-console-list-columns.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-console-list-columns)
 [![License](https://img.shields.io/packagist/l/romanzipp/laravel-console-list-columns.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-console-list-columns)
-[![GitHub Build Status](https://img.shields.io/github/workflow/status/romanzipp/Laravel-Console-List-Columns/Tests?style=flat-square)](https://github.com/romanzipp/Laravel-Console-List-Columns/actions)
+[![GitHub Build Status](https://img.shields.io/github/actions/workflow/status/romanzipp/Laravel-Console-List-Columns/tests.yml?branch=master&label=tests&style=flat-square)](https://github.com/romanzipp/Laravel-Console-List-Columns/actions)
 
 When working with many database migrations you can quickly lose the overview about table structures.
 With this package you can **get a simple overview about table and column information** on your command line.
