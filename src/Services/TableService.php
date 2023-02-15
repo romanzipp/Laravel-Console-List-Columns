@@ -4,7 +4,6 @@ namespace romanzipp\ColumnList\Services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use LogicException;
 
 class TableService
 {
@@ -95,7 +94,7 @@ class TableService
 
         try {
             $schemaBuilder->getAllTables();
-        } catch (LogicException $exception) {
+        } catch (\LogicException $exception) {
             return false;
         }
 
