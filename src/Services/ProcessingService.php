@@ -21,7 +21,7 @@ class ProcessingService
      *
      * @var string|null
      */
-    protected $tableName = null;
+    protected $tableName;
 
     /**
      * The database connection to be used.
@@ -33,7 +33,7 @@ class ProcessingService
     /**
      * Printable cli table.
      *
-     * @var \Symfony\Component\Console\Helper\Table
+     * @var Table
      */
     protected $table;
 
