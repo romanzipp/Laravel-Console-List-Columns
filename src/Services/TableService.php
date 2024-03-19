@@ -32,7 +32,6 @@ class TableService
 
         $this->config = config('column-list');
 
-        /** @phpstan-ignore-next-line */
         $this->connection = DB::connection($this->config['connection']);
     }
 

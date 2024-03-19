@@ -84,7 +84,6 @@ class ProcessingService
 
         $this->config = config('column-list');
 
-        /** @phpstan-ignore-next-line */
         $this->connection = DB::connection($this->config['connection']);
 
         foreach (self::$availableColumns as $key => $title) {
