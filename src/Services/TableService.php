@@ -44,20 +44,9 @@ class TableService
             return $this->tableNames;
         }
 
-        $existingTables = $this->getExistingTables();
-
         $tables = [];
 
-        foreach ($existingTables as $existingTable) {
-            /** @var \stdClass $existingTable */
-            $value = array_values(
-                array_filter(
-                    get_object_vars($existingTable), static function ($value) {
-                        return 'BASE TABLE' !== $value;
-                    }
-                )
-            )[0];
-
+        foreach ($this->getExistingTables() as $value) {
             if ( ! Str::contains($value, $this->tableNames)) {
                 continue;
             }
@@ -73,30 +62,10 @@ class TableService
      */
     public function getExistingTables(): array
     {
-        if (false === $this->config['match_similar'] || ! $this->supportsGettingAllTables()) {
+        if (false === $this->config['match_similar']) {
             return [];
         }
 
-        /**
-         * @var \Illuminate\Database\Schema\MySqlBuilder|\Illuminate\Database\Schema\PostgresBuilder $schemaBuilder
-         */
-        $schemaBuilder = $this->connection->getSchemaBuilder();
-
-        return $schemaBuilder->getAllTables();
-    }
-
-    private function supportsGettingAllTables(): bool
-    {
-        if ( ! method_exists($schemaBuilder = $this->connection->getSchemaBuilder(), 'getAllTables')) {
-            return false;
-        }
-
-        try {
-            $schemaBuilder->getAllTables();
-        } catch (\LogicException $exception) {
-            return false;
-        }
-
-        return true;
+        return array_column($this->connection->getSchemaBuilder()->getTables(), 'name');
     }
 }
