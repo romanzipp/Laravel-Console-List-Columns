@@ -167,20 +167,15 @@ class ProcessingService
      */
     private function fetchTableColumns(): void
     {
-        $columnListing = $this->connection->getSchemaBuilder()->getColumnListing($this->tableName);
+        $schemaBuilder = $this->connection->getSchemaBuilder();
 
-        if (empty($columnListing)) {
+        if ( ! $schemaBuilder->hasTable($this->tableName)) {
             $this->missing = true;
 
             return;
         }
 
-        foreach ($columnListing as $key => $name) {
-            $column = $this->connection->getDoctrineColumn(
-                $this->tableName,
-                $name
-            );
-
+        foreach ($schemaBuilder->getColumns($this->tableName) as $column) {
             $values = $this->processColumnPreferences(
                 $column
             );
@@ -216,19 +211,19 @@ class ProcessingService
     /**
      * Process the column information.
      *
-     * @param \Doctrine\DBAL\Schema\Column $column column
+     * @param array<string, mixed> $column column
      *
      * @return array<string, string> Formatted array of column information
      */
-    private function processColumnPreferences($column): array
+    private function processColumnPreferences(array $column): array
     {
-        $name = $this->coloredString($column->getName(), 'cyan');
+        $name = $this->coloredString($column['name'], 'cyan');
 
-        if ($this->config['mark_laravel_columns'] && in_array($column->getName(), self::LARAVEL_COLUMNS)) {
+        if ($this->config['mark_laravel_columns'] && in_array($column['name'], self::LARAVEL_COLUMNS)) {
             $name .= $this->coloredString(' [L]', 'light_red');
         }
 
-        $type = $column->getType()->getName();
+        $type = $column['type_name'];
 
         $none = $this->coloredString('-', 'dark_gray');
 
@@ -236,11 +231,11 @@ class ProcessingService
             'name' => $name,
             'laravel' => $this->beautifyBooleanValue(in_array($name, self::LARAVEL_COLUMNS)),
             'type' => ($this->config['emojis'] ? $this->getTypeColumnEmoji($type) . ' ' : '') . $type,
-            'length' => $column->getLength() ?? $none,
-            'nullable' => $this->beautifyBooleanValue( ! $column->getNotnull()),
-            'auto_increment' => $this->beautifyBooleanValue($column->getAutoincrement()),
-            'default' => $column->getDefault() ?? $none,
-            'comment' => $column->getComment() ?? $none,
+            'length' => preg_match('/\((\d+)\)/', $column['type'], $length) ? $length[1] : $none,
+            'nullable' => $this->beautifyBooleanValue($column['nullable']),
+            'auto_increment' => $this->beautifyBooleanValue($column['auto_increment']),
+            'default' => $column['default'] ?? $none,
+            'comment' => $column['comment'] ?? $none,
         ];
     }
 
